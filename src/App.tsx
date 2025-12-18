@@ -76,35 +76,45 @@ export function calculateActiveLevel(doses: Dose[], config: CalculatorConfig): n
 function App() {
   const [doses, setDoses] = useState<Dose[]>(() => {
     const now = new Date();
-    const defaultDoses: Array<{daysAgo: number, amount: number}> = [
-      { daysAgo: 18, amount: 93.75 },   // Sun
-      { daysAgo: 17, amount: 93.75 },   // Mon
-      { daysAgo: 16, amount: 93.75 },   // Tues
-      { daysAgo: 15, amount: 93.75 },   // Wed
-      { daysAgo: 14, amount: 0 },       // Thurs
-      { daysAgo: 13, amount: 93.75 },   // Fri
-      { daysAgo: 12, amount: 125 },     // Sat
-      { daysAgo: 11, amount: 0 },       // Sun
-      { daysAgo: 10, amount: 125 },     // Mon
-      { daysAgo: 9, amount: 125 },      // Tues
-      { daysAgo: 8, amount: 125 },      // Wed
-      { daysAgo: 7, amount: 125 },      // Thurs
-      { daysAgo: 6, amount: 0 },        // Fri
-      { daysAgo: 5, amount: 0 },        // Sat
-      { daysAgo: 4, amount: 125 },      // Sun
-      { daysAgo: 3, amount: 93.75 },    // Mon
-      { daysAgo: 2, amount: 125 },      // Tues
-      { daysAgo: 1, amount: 0 },        // Wed
-      { daysAgo: 0, amount: 93.75 },    // Thurs
+    // Array index represents days from first dose (index 0 = oldest, last index = today)
+    const defaultDoses = [
+      93.75,
+      93.75,
+      93.75,
+      93.75,
+      0,
+      93.75,
+      125,
+      0,
+      125,
+      125,
+      125,
+      125,
+      0,
+      0,
+      125,
+      93.75,
+      125,
+      0,
+      93.75
     ];
     
+    // Calculate first dose date
+    const daysAgo = defaultDoses.length - 1;
+    const firstDoseTime = now.getTime() - daysAgo * 24 * 60 * 60 * 1000;
+    
     return defaultDoses
+      .map((amount, dayIndex) => ({
+        amount,
+        dayIndex,
+        timestamp: new Date(firstDoseTime + dayIndex * 24 * 60 * 60 * 1000),
+      }))
       .filter(d => d.amount > 0) // Only include non-zero doses
       .map((d, index) => ({
         id: `default-${index}`,
         amount: d.amount,
         unit: 'ug' as Dose['unit'],
-        timestamp: new Date(now.getTime() - d.daysAgo * 24 * 60 * 60 * 1000),
+        timestamp: d.timestamp,
       }));
   });
   const [halfLifeHours, setHalfLifeHours] = useState<number>(200);
