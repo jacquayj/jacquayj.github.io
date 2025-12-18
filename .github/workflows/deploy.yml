@@ -32,13 +32,18 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p _site/halflife
+          cp -r dist/* _site/halflife/
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './_site'
 
   deploy:
     environment:

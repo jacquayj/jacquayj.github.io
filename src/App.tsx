@@ -77,23 +77,25 @@ function App() {
   const [doses, setDoses] = useState<Dose[]>(() => {
     const now = new Date();
     const defaultDoses: Array<{daysAgo: number, amount: number}> = [
-      { daysAgo: 16, amount: 93.75 },   // Sun
-      { daysAgo: 15, amount: 93.75 },   // Mon
-      { daysAgo: 14, amount: 93.75 },   // Tues
-      { daysAgo: 13, amount: 93.75 },   // Wed
-      { daysAgo: 12, amount: 0 },       // Thurs
-      { daysAgo: 11, amount: 93.75 },   // Fri
-      { daysAgo: 10, amount: 125 },     // Sat
-      { daysAgo: 9, amount: 0 },        // Sun
-      { daysAgo: 8, amount: 125 },      // Mon
-      { daysAgo: 7, amount: 125 },      // Tues
-      { daysAgo: 6, amount: 125 },      // Wed
-      { daysAgo: 5, amount: 125 },      // Thurs
-      { daysAgo: 4, amount: 0 },        // Fri
-      { daysAgo: 3, amount: 0 },        // Sat
-      { daysAgo: 2, amount: 125 },      // Sun
-      { daysAgo: 1, amount: 93.75 },    // Mon
-      { daysAgo: 0, amount: 125 },      // Tues (today)
+      { daysAgo: 18, amount: 93.75 },   // Sun
+      { daysAgo: 17, amount: 93.75 },   // Mon
+      { daysAgo: 16, amount: 93.75 },   // Tues
+      { daysAgo: 15, amount: 93.75 },   // Wed
+      { daysAgo: 14, amount: 0 },       // Thurs
+      { daysAgo: 13, amount: 93.75 },   // Fri
+      { daysAgo: 12, amount: 125 },     // Sat
+      { daysAgo: 11, amount: 0 },       // Sun
+      { daysAgo: 10, amount: 125 },     // Mon
+      { daysAgo: 9, amount: 125 },      // Tues
+      { daysAgo: 8, amount: 125 },      // Wed
+      { daysAgo: 7, amount: 125 },      // Thurs
+      { daysAgo: 6, amount: 0 },        // Fri
+      { daysAgo: 5, amount: 0 },        // Sat
+      { daysAgo: 4, amount: 125 },      // Sun
+      { daysAgo: 3, amount: 93.75 },    // Mon
+      { daysAgo: 2, amount: 125 },      // Tues
+      { daysAgo: 1, amount: 0 },        // Wed
+      { daysAgo: 0, amount: 93.75 },    // Thurs
     ];
     
     return defaultDoses
